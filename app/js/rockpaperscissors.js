@@ -37,10 +37,81 @@ function getComputerMove(move) {
 
 function getWinner(playerMove,computerMove) {
     var winner;
+    
     // Write code that will set winner to either 'player', 'computer', or 'tie' based on the values of playerMove and computerMove.
     // Assume that the only values playerMove and computerMove can have are 'rock', 'paper', and 'scissors'.
     // The rules of the game are that 'rock' beats 'scissors', 'scissors' beats 'paper', and 'paper' beats 'rock'.
-    /* YOUR CODE HERE */
+    
+    /*
+        For testing, I drop this into repl.it with the following code at the top:
+        
+        var winner;
+        var playerMove = 'rock';
+        var computerMove = 'rock';
+        
+        I can then change the actual inputs to get test results.
+        I also remove the "return" statement and have console.log(winner) instead at the end.
+        
+    */
+    
+    switch(playerMove){
+            
+        case 'rock': 
+            switch(computerMove){
+                case 'rock':
+                    winner = 'tie';
+                    break;
+                case 'paper':
+                    winner = 'computer';
+                    break;
+                case 'scissors':
+                    winner = 'player';
+                    break;
+                default:
+                    winner = 'null';
+                    alert('There is an error!');
+            }
+            break;
+            
+        case 'paper': 
+            switch(computerMove){
+                case 'rock':
+                    winner = 'player';
+                    break;
+                case 'paper':
+                    winner = 'tie';
+                    break;
+                case 'scissors':
+                    winner = 'computer';
+                    break;
+                default:
+                    winner = 'null';
+                    alert('There is an error!');
+            }
+            break;        
+            
+        case 'scissors': 
+            switch(computerMove){
+                case 'rock':
+                    winner = 'computer';
+                    break;
+                case 'paper':
+                    winner = 'player';
+                    break;
+                case 'scissors':
+                    winner = 'tie';
+                    break;
+                default:
+                    winner = 'null';
+                    alert('There is an error!');
+            }
+            break;
+            
+        default: 
+            winner = 'null';
+            alert('There is an error!');
+    }
+    
     return winner;
 }
 
