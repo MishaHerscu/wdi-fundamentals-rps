@@ -4,9 +4,10 @@
 'use strict';
 
 function getInput() {
-    console.log("Please choose either 'rock', 'paper', or 'scissors'.")
-    return prompt();
+    console.log("Please choose either 'rock', 'paper', or 'scissors'.");
+    return prompt("Please choose either 'rock', 'paper', or 'scissors'.");
 }
+
 function randomPlay() {
     var randomNumber = Math.random();
     if (randomNumber < 0.33) {
@@ -17,6 +18,7 @@ function randomPlay() {
         return "scissors";
     }
 }
+
 ////////////////////////////////////////////////
 /*           Write Your Code Below            */
 ////////////////////////////////////////////////
@@ -24,7 +26,7 @@ function randomPlay() {
 function getPlayerMove(move) {
     // Write an expression that operates on a variable called `move`
     // If a `move` has a value, your expression should evaluate to that value.
-    // However, if `move` is not specified / is null, your expression should equal `getInput()`.
+    // However, if `move` is not specified / is null, your expression should equal `getInput()`.    
     return move || getInput();
 }
 
@@ -116,11 +118,140 @@ function getWinner(playerMove,computerMove) {
 }
 
 function playToFive() {
+    
+    // Console announcement
     console.log("Let's play Rock, Paper, Scissors");
+    
+    // Declare and initialize variables used
+    var winningScore = 5;
     var playerWins = 0;
     var computerWins = 0;
+    var playerMove;
+    var computerMove;
+    var roundWinner;
+    var finalWinner;
+    var firstPlace;
+    var secondPlace;
+    var victoryString;
+    var gameCount = 0;
+    var gameLimit = 100;
+    
     // Write code that plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
-    /* YOUR CODE HERE */
-    return [playerWins, computerWins];
+    
+    while(playerWins < winningScore && computerWins < winningScore && gameCount < gameLimit){
+        
+        console.log("Let's Play!");
+        
+        // Get inputs
+        playerMove = getPlayerMove();
+        console.log('playerMove is:' + playerMove.toString());
+        computerMove =  getComputerMove();
+        console.log('computerMove is:' + computerMove.toString());
+
+        // Get winner
+        roundWinner = getWinner(playerMove, computerMove);
+        console.log(roundWinner + " won round " + gameCount.toString() + "!");
+
+        if(roundWinner === 'computer'){
+            computerWins += 1;
+        } else if(roundWinner === 'player'){
+            playerWins += 1;
+        } else if(roundWinner === 'tie'){
+            // do nothing      
+        } else {
+            alert('There is an error!');
+        }
+        
+        // This keeps us out of an infinite loop.
+        gameCount += 1;
+        
+    }
+    
+    if (gameCount === gameLimit){
+        victoryString = 'It is a tie in the end. No one won!';
+        return victoryString;
+    } else if(playerWins > computerWins){
+        finalWinner = 'Player wins';
+        firstPlace = playerWins;
+        secondPlace = computerWins;
+    } else if(computerWins > playerWins){
+        finalWinner = 'Computer wins';
+        firstPlace = computerWins;
+        secondPlace = playerWins; 
+    } else{
+        alert('There is an error!');
+    }
+    
+	victoryString = finalWinner + ' ' + firstPlace.toString() + '-' + secondPlace.toString() + '!';
+    return victoryString;
 }
 
+
+function playTo(X) {
+    
+    // Console announcement
+    console.log("Let's play Rock, Paper, Scissors");
+    
+    // Declare and initialize variables used
+    var winningScore = X;
+    var playerWins = 0;
+    var computerWins = 0;
+    var playerMove;
+    var computerMove;
+    var roundWinner;
+    var finalWinner;
+    var firstPlace;
+    var secondPlace;
+    var victoryString;
+    var gameCount = 0;
+    var gameLimit = 100;
+    
+    // Write code that plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
+    
+    while(playerWins < winningScore && computerWins < winningScore && gameCount < gameLimit){
+        
+        console.log("Let's Play!");
+        
+        // Get inputs
+        playerMove = getPlayerMove();
+        console.log('playerMove is:' + playerMove.toString());
+        computerMove =  getComputerMove();
+        console.log('computerMove is:' + computerMove.toString());
+
+        // Get winner
+        roundWinner = getWinner(playerMove, computerMove);
+        console.log(roundWinner + " won round " + gameCount.toString() + "!");
+
+        if(roundWinner === 'computer'){
+            computerWins += 1;
+        } else if(roundWinner === 'player'){
+            playerWins += 1;
+        } else if(roundWinner === 'tie'){
+            // do nothing      
+        } else {
+            alert('There is an error!');
+        }
+        
+        // This keeps us out of an infinite loop.
+        gameCount += 1;
+        
+    }
+    
+    if (gameCount === gameLimit){
+        victoryString = 'It is a tie in the end. No one won!';
+        return victoryString;
+    } else if(playerWins > computerWins){
+        finalWinner = 'Player wins';
+        firstPlace = playerWins;
+        secondPlace = computerWins;
+    } else if(computerWins > playerWins){
+        finalWinner = 'Computer wins';
+        firstPlace = computerWins;
+        secondPlace = playerWins; 
+    } else{
+        alert('There is an error!');
+    }
+    
+	victoryString = finalWinner + ' ' + firstPlace.toString() + '-' + secondPlace.toString() + '!';
+    return victoryString;
+}
